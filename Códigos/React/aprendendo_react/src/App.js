@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     document.title = `Número de clicks: ${count}`
-  }, []) //Só roda quando renderizar pela primeira vez
+  }) //Só roda quando renderizar pela primeira vez
 
   return(
     <div>
