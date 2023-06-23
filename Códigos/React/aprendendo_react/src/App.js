@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 function App() {
   const horaAtual = new Date()
 
-  const [hora, setHora] = useState(horaAtual.getHours())
+  const [hora, setHora] = useState(horaAtual.getHours())//hora atual
   const [minutos, setMinutos] = useState(horaAtual.getMinutes())
   const [segundos, setSegundos] = useState(horaAtual.getSeconds())
 
