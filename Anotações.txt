@@ -219,7 +219,7 @@ Exemplo 2 de useState com array e percorrendo este array:
 
 useEffect: Toda vez que ocorre uma nova renderização, este efeito roda. Pode ser da página ou de algum elemento
 
-Exemplo 1:
+Quando qualquer estado for renderizado:
 
     import './App.css';
     import React, { useState, useEffect } from 'react'
@@ -262,8 +262,6 @@ Renderizando somente na primeira vez (Muito usado quando se usa firebase):
     }
 
     export default App;
-
-
 
 useEffect monitorando se algum elemento é atualizado
 
