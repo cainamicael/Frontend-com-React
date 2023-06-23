@@ -1,16 +1,17 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function App() {
   const [count, setCount] = useState(0)
 
-  var vez
-  count == 1? vez = 'vez' : vez = 'vezes'
+  useEffect(() => {
+    document.title = `Número de clicks: ${count}`
+  }, []) //Só roda quando renderizar pela primeira vez
 
-  return (
+  return(
     <div>
-      <p>Você clicou {count} {vez} </p>
-      <button onClick={() => setCount(count + 1)}> Clique em Mim </button>
+      <h1>Olhe para o título da página</h1>
+      <button onClick={() => setCount(count + 1)}>Clique aqui</button>
     </div>
   )
 }

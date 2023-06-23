@@ -166,7 +166,106 @@ Contador usando useState:
 
     export default App;
 
-useEffect:
+useState com array:
+
+    import './App.css';
+    import React, { useState } from 'react'
+
+    function App() {
+    const [nomes, setNomes] = useState(['Cainã ', 'Micael '])
+
+    return (
+        <div>
+        <p>{nomes}</p>
+        <button onClick={() => setNomes([...nomes, 'Silvestre '])}>Clique para adicionar um nome</button>
+        </div>
+        
+    )
+    }
+
+    export default App;
+
+Exemplo 2 de useState com array e percorrendo este array:
+
+    import './App.css';
+    import React, { useState } from 'react'
+
+    function App() {
+    const [numeros, setNumeros] = useState([1,2])
+
+    const addNumeros =  () => {
+        setNumeros([...numeros,  Math.floor(10* Math.random() + 1)]) //Gera um número aleatório
+    }
+
+    return (
+        <div>
+        <button onClick={addNumeros}>Clique</button>
+        <ul>
+            {numeros.map((numero, indice) => {
+            return ( 
+                <div>
+                <li key={indice}>{numero}</li>
+                <p>Próximo: </p>
+                </div>
+            )
+            })}
+        </ul>
+        </div>
+        
+    )
+    }
+
+    export default App;
+
+useEffect: Toda vez que ocorre uma nova renderização, este efeito roda. Pode ser da página ou de algum elemento
+
+Exemplo 1:
+
+    import './App.css';
+    import React, { useState, useEffect } from 'react'
+
+    function App() {
+    const [count, setCount] = useState(0)
+
+    useEffect(() => {
+        document.title = `Número de clicks: ${count}`
+    }) //Toda vez que ocorre uma nova renderização
+
+    return(
+        <div>
+        <h1>Olhe para o título da página</h1>
+        <button onClick={() => setCount(count + 1)}>Clique aqui</button>
+        </div>
+    )
+    }
+
+    export default App;
+
+Renderizando somente na primeira vez (Muito usado quando se usa firebase):
+
+    import './App.css';
+    import React, { useState, useEffect } from 'react'
+
+    function App() {
+    const [count, setCount] = useState(0)
+
+    useEffect(() => {
+        document.title = `Número de clicks: ${count}`
+    }, []) //Só roda quando renderizar pela primeira vez
+
+    return(
+        <div>
+        <h1>Olhe para o título da página</h1>
+        <button onClick={() => setCount(count + 1)}>Clique aqui</button>
+        </div>
+    )
+    }
+
+    export default App;
+
+
+
+useEffect monitorando se algum elemento é atualizado
 
     import { useState, useEffect } from 'react';
     import './App.css';
