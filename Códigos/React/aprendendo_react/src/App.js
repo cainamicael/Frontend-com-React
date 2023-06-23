@@ -10,9 +10,7 @@ function App() {
   return (
     <div>
       <p>Você clicou {count} {vez} </p>
-      <button onClick={() => {
-          setCount(count + 1)
-        }}>-Clique em Mim-</button>
+      <button onClick={() => setCount(count + 1)}> Clique em Mim </button>
     </div>
   )
 }
