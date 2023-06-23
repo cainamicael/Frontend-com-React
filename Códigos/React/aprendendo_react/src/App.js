@@ -2,16 +2,38 @@ import './App.css';
 import React, { useState, useEffect } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const horaAtual = new Date()
+
+  const [hora, setHora] = useState(horaAtual.getHours())
+  const [minutos, setMinutos] = useState(horaAtual.getMinutes())
+  const [segundos, setSegundos] = useState(horaAtual.getSeconds())
 
   useEffect(() => {
-    document.title = `Número de clicks: ${count}`
-  }) //Só roda quando renderizar pela primeira vez
+    const interval = setInterval(() => {
+      setSegundos(segundos + 1)
+      if (segundos == 59) {
+        setSegundos(0)
+        setMinutos(minutos + 1)
+      }
+
+      if(minutos == 59 && segundos == 59) {
+        setMinutos(0)
+        setHora(hora + 1)
+      }
+      
+      if (hora == 23 && minutos == 59 && segundos == 59) {
+        setHora(0)
+        setMinutos(0)
+        setSegundos(0)
+      }
+    }, 1000)
+
+    return () => clearInterval(interval) //Para ele limpar e ser chamado de novo, para seguir seu fluxo
+  })
 
   return(
     <div>
-      <h1>Olhe para o título da página</h1>
-      <button onClick={() => setCount(count + 1)}>Clique aqui</button>
+      <h2>{hora}:{minutos}:{segundos}</h2>
     </div>
   )
 }
