@@ -1,41 +1,28 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function App() {
-  const horaAtual = new Date()
 
-  const [hora, setHora] = useState(horaAtual.getHours())//hora atual
-  const [minutos, setMinutos] = useState(horaAtual.getMinutes())
-  const [segundos, setSegundos] = useState(horaAtual.getSeconds())
+  const [nomes, setNomes] = useState([])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSegundos(segundos + 1)
-      if (segundos == 59) {
-        setSegundos(0)
-        setMinutos(minutos + 1)
-      }
-
-      if(minutos == 59 && segundos == 59) {
-        setMinutos(0)
-        setHora(hora + 1)
-      }
-      
-      if (hora == 23 && minutos == 59 && segundos == 59) {
-        setHora(0)
-        setMinutos(0)
-        setSegundos(0)
-      }
-    }, 1000)
-
-    return () => clearInterval(interval) //Para ele limpar e ser chamado de novo, para seguir seu fluxo
-  })
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then(res => setNomes(res.data))
+  }, [])
 
   return(
     <div>
-      <h2>{hora}:{minutos}:{segundos}</h2>
+      {nomes.map((res, index) => {
+        return(
+          <div>
+            <h2 key={index}>{res.name} | {res.email}</h2>
+          </div>
+        )
+      })}
     </div>
   )
+
 }
 
 export default App;
