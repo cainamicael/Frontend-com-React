@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 function Search(props) {
     const [tempo, setTempo] = useState([])
 
-    function searchInput() {
+    function searchInput(e) {
+        e.preventDefault()
         let currentValue = document.querySelector('input[name=searchInput]').value
 
-        const apiKey = '00000000000000'
+        const apiKey = '0000000'
         fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${currentValue}&limit=1&appid=${apiKey}`)
             .then(response => response.json())
             .then(result => {
@@ -20,8 +21,12 @@ function Search(props) {
                         const { main, name, sys, weather } = res
                         const { description, icon } = weather[0]
 
-                        setTempo({main, name, sys, description, icon})
+                        const obj = {main, name, sys, description, icon}
+
+                        setTempo(obj)
+                        console.log(obj)
                     })
+                    .catch(e => console.log('Valores não encontrados | ' + e.message))
             })
             .catch(e => console.log('A cidade não foi encontrada | ' + e.message))      
     }
@@ -29,7 +34,10 @@ function Search(props) {
     return(
         <div className="search">
             <h2>Digite a cidade que você quer saber a previsão...</h2>
-            <input type="text" name="searchInput" placeholder={props.placeholder} onKeyUp={searchInput}/>
+            <form onSubmit={e => searchInput(e)}>
+                <input type="text" name="searchInput" placeholder={props.placeholder} />
+                <input type="submit" name="acao" value="Search" />
+            </form>
         </div>
     )
 
