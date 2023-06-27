@@ -30,11 +30,11 @@ function Search(props) {
 
                         //Mostrando as informações
                         setCidade(`
-                            <div>
-                                <p>${celsius.toFixed(2)}</p>
-                                <p>${sys.country}</p>
-                                <p>${name}</p>
-                                <p>${description}</p>
+                            <div class="containerCidade">
+                                <p>Tamperatura: ${celsius.toFixed(2)} C°</p>
+                                <p>Pais: ${sys.country}</p>
+                                <p>Cidade: ${name}</p>
+                                <p>Descrição: ${description}</p>
                                 <img src="${url}" />
                             </div>
                         `) 
@@ -59,13 +59,13 @@ function Search(props) {
                 <h2>Digite a cidade que você quer saber a previsão...</h2>
                 <form onSubmit={e => searchInput(e)}>
                     <input type="text" name="searchInput" placeholder={props.placeholder} />
-                    <input type="submit" name="acao" value="Search" />
+                    <input type="submit" name="acao" value="Pesquisar" />
                 </form>
             </div>
             {
                 (cidade !== '')?
                 <div dangerouslySetInnerHTML={{__html: cidade}}/>:
-                <div>Pesquise por algo acima</div>
+                <div style={{padding: '8px'}}>Pesquise por algo acima...</div>
             }
         </div>
     )
