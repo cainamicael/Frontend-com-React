@@ -16,7 +16,7 @@ function Api() {
 
                 fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`)
                     .then(response => response.json())
-                    .then(async result => {
+                    .then(result => {
                         const main = result.weather[0]['main']
                         const description = result.weather[0].description
                         const icon = result.weather[0].icon
