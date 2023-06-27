@@ -364,7 +364,24 @@ Requisições para APIs usando axios(similar ao ajax): npm install axios
 
     export default App;
 
+Recuperando valor de formulário:
 
+    import React, { useState, useEffect } from 'react'
+
+    function Api() {
+        const [cidade, setCidade] = useState('')
+
+        return (
+            <div>
+                <form onSubmit={e => e.preventDefault()}>
+                    <input id="i" type="text" onChange={e => setCidade(e.target.value)}/>
+                    <input type="submit" value="enviar" />
+                </form> 
+            </div>
+        )
+    } 
+
+    export default Api
 
 
 
