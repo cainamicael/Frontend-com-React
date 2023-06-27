@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
 function Search(props) {
-    const [tempo, setTempo] = useState([])
+    const [cidade, setCidade] = useState('')
 
     function searchInput(e) {
         e.preventDefault()
         let currentValue = document.querySelector('input[name=searchInput]').value
 
-        const apiKey = '0000000'
+        const apiKey = ''
         fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${currentValue}&limit=1&appid=${apiKey}`)
             .then(response => response.json())
             .then(result => {
@@ -21,23 +21,39 @@ function Search(props) {
                         const { main, name, sys, weather } = res
                         const { description, icon } = weather[0]
 
-                        const obj = {main, name, sys, description, icon}
+                        const url = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${icon}.svg`
+                        setCidade(url) 
+                    
+                        const obj = {main, name, sys, description, icon, url}
 
-                        setTempo(obj)
+                        
                         console.log(obj)
                     })
-                    .catch(e => console.log('Valores não encontrados | ' + e.message))
+                    .catch(e => {
+                        console.log('Valores não encontrados | ' + e.message)
+                        setCidade('')
+                    })
             })
-            .catch(e => console.log('A cidade não foi encontrada | ' + e.message))      
+            .catch(e => {
+                console.log('A cidade não foi encontrada | ' + e.message)
+                setCidade('')
+            })      
     }
 
     return(
-        <div className="search">
-            <h2>Digite a cidade que você quer saber a previsão...</h2>
-            <form onSubmit={e => searchInput(e)}>
-                <input type="text" name="searchInput" placeholder={props.placeholder} />
-                <input type="submit" name="acao" value="Search" />
-            </form>
+        <div className="searchWraper">
+            <div className="search">
+                <h2>Digite a cidade que você quer saber a previsão...</h2>
+                <form onSubmit={e => searchInput(e)}>
+                    <input type="text" name="searchInput" placeholder={props.placeholder} />
+                    <input type="submit" name="acao" value="Search" />
+                </form>
+            </div>
+            {
+                (cidade !== '')?
+                <img src={cidade} />:
+                <div>Pesquise por algo acima</div>
+            }
         </div>
     )
 
