@@ -6,31 +6,24 @@ function Search(props) {
     function searchInput() {
         let currentValue = document.querySelector('input[name=searchInput]').value
 
-        const apiKey = *****************
+        const apiKey = '00000000000000'
         fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${currentValue}&limit=1&appid=${apiKey}`)
             .then(response => response.json())
             .then(result => {
-                const lat = result[0]['lat']
-                const lon = result[0].lon
+                const { lat, lon } = result[0]
 
                 console.log({lat, lon})
 
                 fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`)
                     .then(response => response.json())
-                    .then(result => {
-                        const { main, name, sys, weather } = result
+                    .then(res => {
+                        const { main, name, sys, weather } = res
                         const { description, icon } = weather[0]
 
-                        //console.log(result)
-
-                        return ([main, name, sys, description, icon])
+                        setTempo({main, name, sys, description, icon})
                     })
-                    .then(retorno => {
-                        setTempo(retorno)
-                    })
-    })
-
-        
+            })
+            .catch(e => console.log('A cidade não foi encontrada | ' + e.message))      
     }
 
     return(
