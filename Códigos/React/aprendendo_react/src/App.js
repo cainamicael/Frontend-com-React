@@ -5,7 +5,7 @@ import Search from './Search.js'
 function App() {
 
   return (
-    <Search placeholder="Qual a cidade?" />
+    <Search placeholder="Qual a cidade? " />
   )
 
 }
