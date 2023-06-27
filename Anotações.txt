@@ -383,5 +383,5 @@ Recuperando valor de formulário:
 
     export default Api
 
-
+Forma 02: let currentValue = document.querySelector('input[name=searchInput]').value
 
