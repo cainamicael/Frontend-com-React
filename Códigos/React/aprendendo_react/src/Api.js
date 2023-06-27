@@ -5,7 +5,7 @@ function Api() {
     const [tempo, setTempo] = useState([])
 
     function api() {
-        const apiKey = '2933f7fc7a02cbdf76cd4dba1521e6e2'
+        const apiKey = 
         fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cidade}&limit=1&appid=${apiKey}`)
             .then(response => response.json())
             .then(result => {
