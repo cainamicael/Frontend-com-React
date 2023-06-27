@@ -21,12 +21,25 @@ function Search(props) {
                         const { main, name, sys, weather } = res
                         const { description, icon } = weather[0]
 
+                        //src da imagem
                         const url = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${icon}.svg`
-                        setCidade(url) 
+                        
+                        //Converter a temperatura de Kelvin para Celsius
+                        const kelvin = main.temp
+                        const celsius = kelvin - 273
+
+                        //Mostrando as informações
+                        setCidade(`
+                            <div>
+                                <p>${celsius.toFixed(2)}</p>
+                                <p>${sys.country}</p>
+                                <p>${name}</p>
+                                <p>${description}</p>
+                                <img src="${url}" />
+                            </div>
+                        `) 
                     
                         const obj = {main, name, sys, description, icon, url}
-
-                        
                         console.log(obj)
                     })
                     .catch(e => {
@@ -51,7 +64,7 @@ function Search(props) {
             </div>
             {
                 (cidade !== '')?
-                <img src={cidade} />:
+                <div dangerouslySetInnerHTML={{__html: cidade}}/>:
                 <div>Pesquise por algo acima</div>
             }
         </div>

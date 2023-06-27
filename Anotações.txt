@@ -385,3 +385,20 @@ Recuperando valor de formulário:
 
 Forma 02: let currentValue = document.querySelector('input[name=searchInput]').value
 
+Usando o useState para renderizar html: 
+
+    setCidade(`
+        <div>
+            <p>${main.temp}</p>
+            <p>${sys.country}</p>
+            <p>${name}</p>
+            <p>${description}</p>
+            <img src="${url}" />
+        </div>
+    `)  
+
+No return: 
+
+    <div dangerouslySetInnerHTML={{__html: cidade}}/>
+
+
