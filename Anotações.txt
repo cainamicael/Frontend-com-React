@@ -479,3 +479,8 @@ Componente de previsão do tempo:
 
     export default Search
 
+Build de uma aplicação react:
+
+comando: npm run build //Irá criar uma pasta chamada build, e os arquivos dela, colocamos no servidor
+
+No index.html, do build, antes de toda a palavra static, colocamos /build
