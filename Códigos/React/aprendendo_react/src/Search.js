@@ -8,7 +8,7 @@ function Search(props) {
         let currentValue = document.querySelector('input[name=searchInput]').value
 
         const apiKey = ''
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${currentValue}&limit=1&appid=${apiKey}`)
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${currentValue}&limit=1&appid=${apiKey}`)
             .then(response => response.json())
             .then(result => {
                 const { lat, lon } = result[0]
