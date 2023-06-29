@@ -483,4 +483,18 @@ Build de uma aplicação react:
 
 comando: npm run build //Irá criar uma pasta chamada build, e os arquivos dela, colocamos no servidor
 
-No index.html, do build, antes de toda a palavra static, colocamos /build
+No index.html, do build, antes de toda a palavra static, colocamos /build. ex: /build/static/js/main.cf76ea9e.js
+
+Deploy no firebase:
+
+    1 -  Criaremos um novo projeto no site do firebase
+    2 -  Vamos em Criação / hosting
+    3 -  No terminal, instalamos o firebase: npm install -g firebase-tools
+    4 -  Chamamos o firebase login no console: firebase login
+    5 -  Direcionamos para a pasta build e damos o comando: firebase init
+    6 -  Escolhemos a opção hosting e damos espaço e entre
+    7 -  Usaremos um projeto existente e selecionaremos ele
+    8 -  What do you want to use as your public directory? build
+    9 -  single-page-app
+    10 - File build/index.html alredy exists. Overwrite? No
+    11 - firebase deploy
