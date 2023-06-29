@@ -7,7 +7,7 @@ function Search(props) {
         e.preventDefault()
         let currentValue = document.querySelector('input[name=searchInput]').value
 
-        const apiKey = '2933f7fc7a02cbdf76cd4dba1521e6e2'
+        const apiKey = '2933f7fc7a02cbdf76cd4dba1521e6e2' 
         fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${currentValue}&limit=1&appid=${apiKey}`)
             .then(response => response.json())
             .then(result => {
